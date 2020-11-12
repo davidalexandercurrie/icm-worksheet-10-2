@@ -2,6 +2,7 @@ let sounds = [];
 let lastPlayedSound = 29;
 let soundPaused = false;
 let firstPlay = false;
+let lastTime;
 
 function preload() {
   for (let i = 0; i < 30; i++) {
@@ -19,7 +20,7 @@ function draw() {
   if (firstPlay) {
     text(
       'File ' +
-        lastPlayedSound +
+        (lastPlayedSound + 1) +
         (sounds[lastPlayedSound].isPlaying()
           ? ' is playing'
           : sounds[lastPlayedSound].isPaused()
@@ -28,7 +29,8 @@ function draw() {
       width / 2,
       height / 2
     );
-    line(10, height / 2, width - 10, height / 2);
+  } else {
+    text('Click to Play', width / 2, height / 2);
   }
 }
 
@@ -52,6 +54,7 @@ function mousePressed() {
 function endOfSample() {}
 
 function playBar() {
+  line(10, height / 2 + 30, width - 10, height / 2 + 30);
   rectMode(CENTER);
   fill(0);
   rect(
@@ -62,8 +65,15 @@ function playBar() {
       10,
       width - 10
     ),
-    height / 2,
+    height / 2 + 30,
     10,
     40
   );
+  if (
+    sounds[lastPlayedSound].currentTime() === lastTime &&
+    sounds[lastPlayedSound].isPlaying()
+  ) {
+    text('there is a bug', width / 2, height / 2 + 100);
+  }
+  lastTime = sounds[lastPlayedSound].currentTime();
 }
