@@ -6,7 +6,9 @@ let lastTime;
 
 function preload() {
   for (let i = 0; i < 30; i++) {
-    sounds[i] = loadSound('./sounds/yamaha' + (i + 1) + '.wav');
+    sounds[i] = loadSound(
+      './icm-worksheet-10-2/sounds/yamaha' + (i + 1) + '.wav'
+    );
     sounds[i].onended(endOfSample);
   }
 }
