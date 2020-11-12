@@ -1,1 +1,3 @@
 link to sketch: https://davidalexandercurrie.github.io/icm-worksheet-10-2/
+
+.currentTime() seems to get frozen sometimes...
